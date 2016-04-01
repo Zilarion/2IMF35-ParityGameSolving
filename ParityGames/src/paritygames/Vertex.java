@@ -5,6 +5,8 @@
  */
 package paritygames;
 
+import java.util.List;
+
 /**
  *
  * @author Hein
@@ -13,14 +15,14 @@ public class Vertex {
     private final int id;
     private final int priority;
     private final Owner owner;
-    private final int[] successors;
+    private final List<Vertex> successors;
     private final String name; 
     
     public enum Owner {
         ODD, EVEN
     }
     
-    public Vertex(int id, int priority, Owner owner, int[] suc, String n) {
+    public Vertex(int id, int priority, Owner owner, List<Vertex> suc, String n) {
         this.id = id;
         this.priority = priority;
         this.owner = owner;
@@ -31,6 +33,10 @@ public class Vertex {
     public int getID() {
         return this.id;
     }
+    
+    public void addSuccessor(Vertex v) {
+        this.successors.add(v);
+    } 
     
     @Override
     public boolean equals(Object obj) {
@@ -53,8 +59,8 @@ public class Vertex {
         String priority = "Priority: " + Integer.toString(this.priority) + "\n";
         String owner = "Owner: " + this.owner + "\n";
         String successors = "Successors : ";
-        for (int s : this.successors) {
-            successors += Integer.toString(s) + " ";
+        for (Vertex s : this.successors) {
+            successors += s + " ";
         }
         successors += "\n";
         String name = "Name: " + this.name + "\n";
