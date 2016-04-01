@@ -16,7 +16,8 @@ public class Vertex {
     private final int priority;
     private final Owner owner;
     private final List<Vertex> successors;
-    private final String name; 
+    private final String name;
+    private dTuple tuple;
     
     public enum Owner {
         ODD, EVEN
@@ -38,9 +39,21 @@ public class Vertex {
         return priority;
     }
     
+    public Owner getOwner() {
+        return owner;
+    }
+    
+    public List<Vertex> getSuccessors() {
+        return successors;
+    }
+    
     public void addSuccessor(Vertex v) {
         this.successors.add(v);
     } 
+    
+    public dTuple getTuple() {
+        return tuple;
+    }
     
     @Override
     public boolean equals(Object obj) {

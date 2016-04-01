@@ -16,8 +16,12 @@ public class ParityGame {
         this.vertices = new ArrayList<>();
     }
 
-    public List<Vertex> getStates() {
+    public List<Vertex> getVertices() {
         return this.vertices;
+    }
+    
+    public int maxPriority() {
+        return maxPriority;
     }
     
     public int getStateSize() {
