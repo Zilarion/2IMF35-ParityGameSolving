@@ -34,6 +34,10 @@ public class Vertex {
         return this.id;
     }
     
+    public int getPriority() {
+        return priority;
+    }
+    
     public void addSuccessor(Vertex v) {
         this.successors.add(v);
     } 

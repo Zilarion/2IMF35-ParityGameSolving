@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package paritygames;
 
 import java.util.ArrayList;
@@ -14,16 +9,11 @@ import java.util.List;
  */
 public class ParityGame {
 
-    private final int maxID;
-    private final List<Vertex> vertices;
+    private int maxPriority;
+    private List<Vertex> vertices;
 
-    public ParityGame(String x) {
-        this.maxID = Integer.parseInt(x);
-        this.vertices = new ArrayList<>(maxID+1);
-    }
-
-    public int getMaxID() {
-        return this.maxID;
+    public ParityGame() {
+        this.vertices = new ArrayList<>();
     }
 
     public List<Vertex> getStates() {
@@ -34,8 +24,11 @@ public class ParityGame {
         return this.vertices.size();
     }
 
-    public void addVertex(Vertex n) {
-        this.vertices.add(n);
+    public void addVertex(Vertex v) {
+        if (v.getPriority() > maxPriority) {
+            maxPriority = v.getPriority();
+        }
+        this.vertices.add(v);
     }
     
     @Override
