@@ -19,27 +19,23 @@ public class ParityGames {
      */
     public static void main(String[] args) throws IOException {
         PGParser pgp = new PGParser();
-//        File file = new File(args[0]);
+        File file = new File(args[0]);
         
-        File file = new File("/Users/ruudandriessen/study/2imf35/2IMF35-ParityGameSolving/problem sets/elevator-games/elevator1_2.gm");
+//        File file = new File("/Users/ruudandriessen/study/2imf35/2IMF35-ParityGameSolving/problem sets/elevator-games/elevator2_7.gm");
         ParityGame pg = pgp.readFilePG(file);
         
         Pair<List<Vertex>, List<Vertex>> results = null;
         try {
-            results = SmallProgressMeasures.calculate(pg, new LiftStrategyOrdered(pg));
+            results = SmallProgressMeasures.calculate(pg, new LiftStrategyRandomlyOrdered(pg));
         } catch (IllegalTupleException ex) {
             Logger.getLogger(ParityGames.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (results.getKey().size() == 0) {
-            System.out.println("Even: {}");
-            System.out.println("Odd: S");
-        } else if (results.getValue().size() == 0) {
-            
-            System.out.println("Even: S");
-            System.out.println("Odd: {}");
+        if (results.getKey().get(0).getID() == 0) {
+            System.out.println("Even won!");
+        } else if (results.getValue().get(0).getID() == 0) {
+            System.out.println("Odd won!");
         } else {
-            System.out.println("Even: " + results.getKey());
-            System.out.println("Odd: " + results.getValue());
+            System.out.println("Hein won!");
         }
     }
     

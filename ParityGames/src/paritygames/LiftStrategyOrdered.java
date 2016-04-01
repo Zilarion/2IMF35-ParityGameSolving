@@ -26,6 +26,7 @@ public class LiftStrategyOrdered extends LiftStrategy {
         return v;
     }
     
+    @Override
     public boolean isEnd() {
         return current == pg.getVertices().size() - 1  && loops > 1;
     }

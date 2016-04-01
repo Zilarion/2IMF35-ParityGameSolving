@@ -19,6 +19,7 @@ public class Vertex {
     private final List<Vertex> successors;
     private final String name;
     private dTuple tuple;
+    private boolean stable;
     
     public enum Owner {
         ODD, EVEN
@@ -30,6 +31,7 @@ public class Vertex {
         this.owner = owner;
         this.successors = new ArrayList<>();
         this.name = n;
+        stable = false;
     }
     
     public int getID() {
@@ -58,6 +60,14 @@ public class Vertex {
     
     public dTuple getTuple() {
         return tuple;
+    }
+    
+    public void setStable() {
+        stable = true;
+    }
+    
+    public boolean stable() {
+        return stable;
     }
     
     @Override

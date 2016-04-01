@@ -41,7 +41,6 @@ public class dTuple {
             }
         }
         
-        System.out.println("Max tuple: " + maxTuple);
         // Set our max tuple
         max = maxTuple;
     }

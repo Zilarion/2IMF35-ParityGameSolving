@@ -22,9 +22,7 @@ public class SmallProgressMeasures {
             v.setTuple(new dTuple());
         }
 
-        // Initialize empty tuple
-        dTuple rho = new dTuple();
-        dTuple nRho;
+        dTuple nRho, rho;
         boolean isStable = false;
         while (true) {
             // Lift the next vertex until stable
@@ -36,18 +34,22 @@ public class SmallProgressMeasures {
                 }
             }
             Vertex v = strategy.next();
+            if (v.stable()) continue;
+            
+            rho = v.getTuple();
             nRho = lift(v, rho);
             
-            if (!rho.lt(nRho)) {
-                System.out.println("Vertex: " + v + " not stable..");
-                System.out.println(rho + " lt " + nRho + " does not hold");
+            if (rho.lt(nRho)) {
                 isStable = false;
+            } else {
+                v.setStable();
             }
-            rho = nRho;
+            v.setTuple(nRho);
         }
     }
 
     public static dTuple lift(Vertex v, dTuple rho) throws IllegalTupleException {
+//        System.out.println("-------");
         if (v.getOwner() == Owner.EVEN) {
 //        System.out.println("Lift: " + v + " / even");
             // Initialize new d-tuple to T
@@ -56,8 +58,8 @@ public class SmallProgressMeasures {
 
             // Calculate the minimum of all prog(rho, v, w)
             for (Vertex w : v.getSuccessors()) {
-                dTuple newTuple = prog(rho, v, w);
-//                System.out.println("Prog (" + rho + ", " + v + ", " + w + "): " + newTuple);
+                dTuple newTuple = prog(v, w);
+//                System.out.println("Prog (" + v.getTuple() + ", " + v + ", " + w + "): " + newTuple);
                 if (newTuple.lt(min)) {
                     min = newTuple;
                 }
@@ -71,8 +73,8 @@ public class SmallProgressMeasures {
 
             // Calculate the maximum of all prog(rho, v, w)
             for (Vertex w : v.getSuccessors()) {
-                dTuple newTuple = prog(rho, v, w);
-//                System.out.println("Prog (" + rho + ", " + v + ", " + w + "): " + newTuple);
+                dTuple newTuple = prog(v, w);
+//                System.out.println("Prog (" + v.getTuple() + ", " + v + ", " + w + "): " + newTuple);
                 if (newTuple.gt(max)) {
                     max = newTuple;
                 }
@@ -82,7 +84,7 @@ public class SmallProgressMeasures {
         }
     }
 
-    public static dTuple prog(dTuple rho, Vertex v, Vertex w) throws IllegalTupleException {
+    public static dTuple prog(Vertex v, Vertex w) throws IllegalTupleException {
         dTuple result = new dTuple();
         int vPriority = v.getPriority();
         dTuple wRho = w.getTuple();
