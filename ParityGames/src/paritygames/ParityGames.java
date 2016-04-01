@@ -19,41 +19,45 @@ public class ParityGames {
      */
     public static void main(String[] args) throws IOException {
         PGParser pgp = new PGParser();
-        
+
         String fileLoc = null, algorithm = null;
         boolean fullOutput = false;
+        boolean mute = false;
         for (int i = 0; i < args.length; i++) {
             String input = args[i];
             switch (input) {
                 case "-f":
-                    fileLoc = args[i+1];
-                break;
+                    fileLoc = args[i + 1];
+                    break;
                 case "-l":
-                    algorithm = args[i+1];
-                break;
+                    algorithm = args[i + 1];
+                    break;
                 case "-d":
                     fullOutput = true;
-                break;
+                    break;
+                case "-m":
+                    mute = true;
+                    break;
                 case "-h":
                 case "--help":
                     printHelp();
                     return;
                 default:
-                break;
+                    break;
             }
         }
-        
+
         // Check if we have a valid algorithm and file
         if (fileLoc == null || algorithm == null || (algorithm == "random" || algorithm == "input")) {
             printHelp();
             return;
         }
         File file = new File(fileLoc);
-        
+
         // Read parity game from file
         ParityGame pg = pgp.readFilePG(file);
         LiftStrategy strategy = getStrategy(algorithm, pg);
-        
+
         // Calculate
         Pair<List<Vertex>, List<Vertex>> results = null;
         try {
@@ -61,12 +65,12 @@ public class ParityGames {
         } catch (IllegalTupleException ex) {
             Logger.getLogger(ParityGames.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        if (fullOutput) {
+
+        if (fullOutput && !mute) {
             // Print full results
             System.out.println("Even: " + results.getKey());
             System.out.println("Odd: " + results.getValue());
-        } else {
+        } else if (!mute) {
             // Print results
             if (results.getKey().get(0).getID() == 0) {
                 System.out.println("Even won!");
@@ -77,15 +81,16 @@ public class ParityGames {
             }
         }
     }
-    
+
     public static void printHelp() {
         System.out.println("Usage ParityGames.jar [options]");
         System.out.println("-h|--help   print help");
         System.out.println("-f          input file location");
         System.out.println("-d          detailed output (full winning partitions)");
+        System.out.println("-m          no output (mute)");
         System.out.println("-l          lifting method used: <order, random, ..>");
     }
-    
+
     public static LiftStrategy getStrategy(String strategy, ParityGame pg) {
         switch (strategy) {
             case "random":
