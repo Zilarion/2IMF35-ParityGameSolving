@@ -82,6 +82,10 @@ public class dTuple {
         return isTop;
     }
 
+    public boolean eq(dTuple dtuple) {
+        return eq(tupleSize, dtuple);
+    }
+    
     public boolean eq(int position, dTuple dtuple) {
         if (isTop) {
             // Only equal if the other is also top
@@ -98,6 +102,10 @@ public class dTuple {
         }
     }
 
+    public boolean lt(dTuple dtuple) {
+        return lt(tupleSize, dtuple);
+    }
+    
     public boolean lt(int position, dTuple dtuple) {
         if (isTop) {
             // If we are top, everything is less then us except for top
@@ -130,6 +138,10 @@ public class dTuple {
         }
     }
 
+    public boolean gt(dTuple dtuple) {
+        return gt(tupleSize, dtuple);
+    }
+    
     public boolean gt(int position, dTuple dtuple) {
         if (isTop) {
             // If we are top, nothing is greater then us

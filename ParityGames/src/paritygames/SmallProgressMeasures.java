@@ -2,7 +2,6 @@ package paritygames;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 import javafx.util.Pair;
 import paritygames.Vertex.Owner;
 
@@ -22,37 +21,53 @@ public class SmallProgressMeasures {
         // Initialize empty tuple
         dTuple rho = new dTuple();
 
-        boolean canLift = true;
-        while (canLift) {
+        dTuple nRho;
+        do {
+            // Lift the next vertex until stable
             Vertex v = strategy.next();
-            lift(v);
-        }
+            nRho = lift(v, rho);
+        } while (!nRho.eq(rho));
 
         // Calculate results
         return results(pg);
     }
 
-    public static Vertex getRandomLift(ParityGame pg) {
-        // Return a random lift
-        int value = ThreadLocalRandom.current().nextInt(0, pg.getVertices().size());
-        return pg.getVertices().get(value);
-    }
-
-    public static void lift(Vertex v) throws IllegalTupleException {
+    public static dTuple lift(Vertex v, dTuple rho) throws IllegalTupleException {
         if (v.getOwner() == Owner.EVEN) {
             // Initialize new d-tuple to T
             dTuple min = new dTuple();
             min.setTop(true);
-            for (Vertex suc : v.getSuccessors()) {
-
+            
+            // Calculate the minimum of all prog(rho, v, w)
+            for (Vertex w : v.getSuccessors()) {
+                dTuple newTuple = prog(rho, v, w);
+                if (newTuple.lt(min)) {
+                    min = newTuple;
+                }
             }
-        } else if (v.getOwner() == Owner.ODD) {
+            return min;
+        } else { // v.getOwner() == Owner.ODD
             // Initialize new d-tuple to (0,...0)
             dTuple max = new dTuple();
-            for (Vertex suc : v.getSuccessors()) {
-
+            
+            // Calculate the maximum of all prog(rho, v, w)
+            for (Vertex w : v.getSuccessors()) {
+                dTuple newTuple = prog(rho, v, w);
+                if (newTuple.gt(max)) {
+                    max = newTuple;
+                }
             }
+            return max;
         }
+    }
+    
+    public static dTuple prog(dTuple rho, Vertex v, Vertex w) {
+        if (v.getOwner() == Owner.EVEN) {
+            
+        } else {
+            
+        }
+        return rho; // Temporary
     }
     
     public static dTuple maxTuple(ParityGame pg) throws IllegalTupleException {
