@@ -5,7 +5,8 @@
  */
 package paritygames;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,54 +15,35 @@ import java.util.HashSet;
 public class ParityGame {
 
     private final int maxID;
-    private final HashSet<Edge> edgeSet;
-    private final HashSet<Vertex> nodeSet;
+    private final List<Vertex> vertices;
 
     public ParityGame(String x) {
         this.maxID = Integer.parseInt(x);
-        this.edgeSet = new HashSet<>();
-        this.nodeSet = new HashSet<>(maxID+1);
+        this.vertices = new ArrayList<>(maxID+1);
     }
 
     public int getMaxID() {
         return this.maxID;
     }
-    
-    public HashSet<Edge> getEdges() {
-        return this.edgeSet;
-    }
-    
-    public int getEdgeCount() {
-        return this.edgeSet.size();
-    }
 
-    public HashSet<Vertex> getStates() {
-        return this.nodeSet;
+    public List<Vertex> getStates() {
+        return this.vertices;
     }
     
     public int getStateSize() {
-        return this.nodeSet.size();
+        return this.vertices.size();
     }
 
-    public void addNode(Vertex n) {
-        this.nodeSet.add(n);
+    public void addVertex(Vertex n) {
+        this.vertices.add(n);
     }
     
     @Override
     public String toString() {
         String result = "";
-        for (Vertex s : this.nodeSet) {
+        for (Vertex s : this.vertices) {
             result += s.toString() + "\n";
         }
         return result;
-    }
-
-    public String toDot() {
-        String edges = "";
-        for (Edge edge : this.edgeSet) {
-            edges += edge.getStart() + " -> " + edge.getEnd() + "[label=" + edge.getLabel() + "];\n";
-        }
-        String graph = "digraph G {\n" + edges + "}";
-        return graph;
     }
 }
