@@ -24,6 +24,10 @@ public class ParityGame {
         return this.vertices.get(id);
     }
     
+    public int maxPriority() {
+        return maxPriority;
+    }
+    
     public int getStateSize() {
         return this.vertices.size();
     }
