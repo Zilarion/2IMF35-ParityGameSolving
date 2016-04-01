@@ -1,5 +1,8 @@
 package paritygames;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author ruudandriessen
@@ -48,14 +51,14 @@ public class dTuple {
         max = maxTuple;
     }
     
-    public int size() {
+    public static int size() {
         return tupleSize;
     }
 
     public void set(int position, int value) throws IllegalTupleException {
         if (max != null) {
             if (max.get(position) < value) {
-                throw new IllegalTupleException("Cannot set tuple value higher then max");
+                setTop(true);
             }
         }
         tuple[position] = value;
@@ -64,7 +67,7 @@ public class dTuple {
     public void increment(int position) throws IllegalTupleException {
         if (max != null) {
             if (max.get(position) < tuple[position] + 1) {
-                throw new IllegalTupleException("Cannot increment tuple value higher then max");
+                setTop(true);
             }
         }
         tuple[position]++;
