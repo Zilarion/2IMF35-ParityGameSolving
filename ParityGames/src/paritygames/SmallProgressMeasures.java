@@ -12,11 +12,7 @@ import paritygames.Vertex.Owner;
  */
 public class SmallProgressMeasures {
 
-    public enum Strategy {
-        RANDOM, INPUT
-    }
-
-    public static Pair<List<Vertex>, List<Vertex>> calculate(ParityGame pg, Strategy strategy) throws InvalidStrategyException, IllegalTupleException {
+    public static Pair<List<Vertex>, List<Vertex>> calculate(ParityGame pg, LiftStrategy strategy) throws IllegalTupleException {
         // Set default tuple size
         dTuple.setTupleSize(pg.maxPriority() + 1);
 
@@ -28,24 +24,12 @@ public class SmallProgressMeasures {
 
         boolean canLift = true;
         while (canLift) {
-            Vertex v = getLift(pg, strategy);
+            Vertex v = strategy.next();
             lift(v);
         }
 
         // Calculate results
         return results(pg);
-    }
-
-    public static Vertex getLift(ParityGame pg, Strategy strategy) throws InvalidStrategyException {
-        Vertex v;
-        switch (strategy) {
-            case RANDOM:
-                v = getRandomLift(pg);
-                break;
-            default:
-                throw new InvalidStrategyException("Strategy: " + strategy + " is not implemented");
-        }
-        return v;
     }
 
     public static Vertex getRandomLift(ParityGame pg) {
