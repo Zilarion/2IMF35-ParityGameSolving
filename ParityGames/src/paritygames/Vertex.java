@@ -9,17 +9,21 @@ package paritygames;
  *
  * @author Hein
  */
-public class State {
+public class Vertex {
     private final int id;
     private final int priority;
-    private final int owner;
+    private final Owner owner;
     private final int[] successors;
     private final String name; 
     
-    public State(Integer x, Integer y, Integer z, int[] suc, String n) {
-        this.id = x;
-        this.priority = y;
-        this.owner = z;
+    public enum Owner {
+        ODD, EVEN
+    }
+    
+    public Vertex(int id, int priority, Owner owner, int[] suc, String n) {
+        this.id = id;
+        this.priority = priority;
+        this.owner = owner;
         this.successors = suc;
         this.name = n;
     }
@@ -31,8 +35,8 @@ public class State {
     @Override
     public boolean equals(Object obj) {
         if (obj == null) return false;
-        if (!State.class.isAssignableFrom(obj.getClass())) return false;
-        final State n = (State) obj;
+        if (!Vertex.class.isAssignableFrom(obj.getClass())) return false;
+        final Vertex n = (Vertex) obj;
         return (this.id == n.id);
     }
 
@@ -47,7 +51,7 @@ public class State {
     public String toString() {
         String id = "ID: " + Integer.toString(this.id) + "\n";
         String priority = "Priority: " + Integer.toString(this.priority) + "\n";
-        String owner = "Owner: " + Integer.toString(this.owner) + "\n";
+        String owner = "Owner: " + this.owner + "\n";
         String successors = "Successors : ";
         for (int s : this.successors) {
             successors += Integer.toString(s) + " ";

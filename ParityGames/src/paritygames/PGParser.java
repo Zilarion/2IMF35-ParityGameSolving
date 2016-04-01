@@ -35,7 +35,7 @@ public class PGParser {
 
     public ParityGame readFilePG(File file) throws FileNotFoundException, IOException {
         ParityGame pg = null;
-        HashMap<Integer, State> states = new HashMap<>();
+        HashMap<Integer, Vertex> states = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             for (String line; (line = br.readLine()) != null;) {
                 Matcher m = initPattern.matcher(line);
@@ -55,13 +55,13 @@ public class PGParser {
             return pg;
         }
 
-        for (State s : states.values()) {
+        for (Vertex s : states.values()) {
             pg.addNode(s);
         }
         return pg;
     }
 
-    private ParityGame parsePG(ParityGame pg, HashMap<Integer, State> states, Matcher m) throws IOException {
+    private ParityGame parsePG(ParityGame pg, HashMap<Integer, Vertex> states, Matcher m) throws IOException {
         if (m.find()) {
             int id = Integer.parseInt(m.group(1));
             int prio = Integer.parseInt(m.group(2));
@@ -75,11 +75,11 @@ public class PGParser {
                 successors[i] = Integer.parseInt(strArray[i]);
             }
 
-            State identifier;
+            Vertex identifier;
             if (states.containsKey(id)) {
                 identifier = states.get(id);
             } else {
-                identifier = new State(id, prio, own, successors, n);
+                identifier = new Vertex(id, prio, own, successors, n);
             }
             states.put(id, identifier);
         }

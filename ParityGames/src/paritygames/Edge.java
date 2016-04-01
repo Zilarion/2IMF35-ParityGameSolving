@@ -10,17 +10,17 @@ package paritygames;
  * @author Hein
  */
 public class Edge {
-    private final State startState;
+    private final Vertex startState;
     private final String label;
-    private final State endState;
+    private final Vertex endState;
     
-    public Edge(State from, String l, State to) {
+    public Edge(Vertex from, String l, Vertex to) {
         this.startState = from;
         this.label = l;
         this.endState = to;
     }
     
-    public State getStart() {
+    public Vertex getStart() {
         return this.startState;
     }
     
@@ -28,7 +28,7 @@ public class Edge {
         return this.label;
     }
     
-    public State getEnd() {
+    public Vertex getEnd() {
         return this.endState;
     }
     

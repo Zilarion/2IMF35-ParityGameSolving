@@ -15,7 +15,7 @@ public class ParityGame {
 
     private final int maxID;
     private final HashSet<Edge> edgeSet;
-    private final HashSet<State> nodeSet;
+    private final HashSet<Vertex> nodeSet;
 
     public ParityGame(String x) {
         this.maxID = Integer.parseInt(x);
@@ -35,7 +35,7 @@ public class ParityGame {
         return this.edgeSet.size();
     }
 
-    public HashSet<State> getStates() {
+    public HashSet<Vertex> getStates() {
         return this.nodeSet;
     }
     
@@ -43,14 +43,14 @@ public class ParityGame {
         return this.nodeSet.size();
     }
 
-    public void addNode(State n) {
+    public void addNode(Vertex n) {
         this.nodeSet.add(n);
     }
     
     @Override
     public String toString() {
         String result = "";
-        for (State s : this.nodeSet) {
+        for (Vertex s : this.nodeSet) {
             result += s.toString() + "\n";
         }
         return result;
