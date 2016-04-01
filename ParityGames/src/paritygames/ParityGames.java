@@ -52,6 +52,9 @@ public class ParityGames {
         
         // Read parity game from file
         ParityGame pg = pgp.readFilePG(file);
+        System.out.println("--------------------");
+        System.out.println(pg.toDot());
+        System.out.println("--------------------");
         LiftStrategy strategy = getStrategy(algorithm, pg);
         
         // Calculate
@@ -75,7 +78,7 @@ public class ParityGames {
             } else {
                 System.out.println("Hein won!");
             }
-        }
+        }  
     }
     
     public static void printHelp() {
