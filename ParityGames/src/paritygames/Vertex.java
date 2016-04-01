@@ -5,6 +5,7 @@
  */
 package paritygames;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,11 +23,11 @@ public class Vertex {
         ODD, EVEN
     }
     
-    public Vertex(int id, int priority, Owner owner, List<Vertex> suc, String n) {
+    public Vertex(int id, int priority, Owner owner, String n) {
         this.id = id;
         this.priority = priority;
         this.owner = owner;
-        this.successors = suc;
+        this.successors = new ArrayList<>();
         this.name = n;
     }
     
@@ -35,7 +36,7 @@ public class Vertex {
     }
     
     public int getPriority() {
-        return priority;
+        return this.priority;
     }
     
     public void addSuccessor(Vertex v) {
@@ -64,7 +65,7 @@ public class Vertex {
         String owner = "Owner: " + this.owner + "\n";
         String successors = "Successors : ";
         for (Vertex s : this.successors) {
-            successors += s + " ";
+            successors += s.getID() + " ";
         }
         successors += "\n";
         String name = "Name: " + this.name + "\n";

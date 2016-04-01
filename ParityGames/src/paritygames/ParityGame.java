@@ -1,7 +1,6 @@
 package paritygames;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -10,14 +9,19 @@ import java.util.List;
 public class ParityGame {
 
     private int maxPriority;
-    private List<Vertex> vertices;
+    private ArrayList<Vertex> vertices;
 
     public ParityGame() {
-        this.vertices = new ArrayList<>();
+        this.vertices = new ArrayList();
+        this.maxPriority = -1;
     }
 
-    public List<Vertex> getStates() {
+    public ArrayList<Vertex> getVertices() {
         return this.vertices;
+    }
+    
+    public Vertex getVertex(int id) {
+        return this.vertices.get(id);
     }
     
     public int getStateSize() {
@@ -34,7 +38,8 @@ public class ParityGame {
     @Override
     public String toString() {
         String result = "";
-        for (Vertex s : this.vertices) {
+        for (int i=0; i < this.vertices.size(); i++) {
+            Vertex s = this.vertices.get(i);
             result += s.toString() + "\n";
         }
         return result;
