@@ -52,6 +52,10 @@ public class Vertex {
         this.successors.add(v);
     } 
     
+    public void setTuple(dTuple tuple) {
+        this.tuple = tuple;
+    }
+    
     public dTuple getTuple() {
         return tuple;
     }
@@ -73,15 +77,6 @@ public class Vertex {
     
     @Override
     public String toString() {
-        String id = "ID: " + Integer.toString(this.id) + "\n";
-        String priority = "Priority: " + Integer.toString(this.priority) + "\n";
-        String owner = "Owner: " + this.owner + "\n";
-        String successors = "Successors : ";
-        for (Vertex s : this.successors) {
-            successors += s.getID() + " ";
-        }
-        successors += "\n";
-        String name = "Name: " + this.name + "\n";
-        return id + priority + owner + successors + name;
+        return "" + id;// + priority + owner + successors + name;
     }
 }

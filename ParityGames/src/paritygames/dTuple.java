@@ -1,8 +1,5 @@
 package paritygames;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author ruudandriessen
@@ -18,9 +15,6 @@ public class dTuple {
     }
 
     public dTuple(int[] tuple) throws IllegalTupleException {
-        if (max == null) {
-            throw new IllegalTupleException("Max tuple value is not set");
-        }
         if (tupleSize == -1) {
             throw new IllegalTupleException("Tuple size is not set");
         }
@@ -47,6 +41,7 @@ public class dTuple {
             }
         }
         
+        System.out.println("Max tuple: " + maxTuple);
         // Set our max tuple
         max = maxTuple;
     }
@@ -86,7 +81,7 @@ public class dTuple {
     }
 
     public boolean eq(dTuple dtuple) {
-        return eq(tupleSize, dtuple);
+        return eq(tupleSize - 1, dtuple);
     }
     
     public boolean eq(int position, dTuple dtuple) {
@@ -94,6 +89,10 @@ public class dTuple {
             // Only equal if the other is also top
             return dtuple.isTop();
         } else {
+            if (dtuple.isTop()) {
+                // We would never be equal to top
+                return false;
+            }
             // Check if our equals operator holds up to the final position
             for (int i = 0; i < position; i++) {
                 if (dtuple.get(i) != tuple[i]) {
@@ -106,14 +105,18 @@ public class dTuple {
     }
 
     public boolean lt(dTuple dtuple) {
-        return lt(tupleSize, dtuple);
+        return lt(tupleSize - 1, dtuple);
     }
     
     public boolean lt(int position, dTuple dtuple) {
         if (isTop) {
-            // If we are top, everything is less then us except for top
-            return !dtuple.isTop();
+            // If we are top, dtuple is never less then us
+            return false;
         } else {
+            if (dtuple.isTop()) {
+                // If dtuple is top and we are not, dtuple is less then us
+                return true;
+            }
             // Check that all previous tuple values are at least the same or less
             for (int i = 0; i < position; i++) {
                 if (!(dtuple.get(i) <= tuple[i])) {
@@ -127,9 +130,14 @@ public class dTuple {
 
     public boolean lte(int position, dTuple dtuple) {
         if (isTop) {
-            // If we are top, everything is less or equal to us
-            return true;
+            // If we are top, then dtuple is only equal if it is also top
+            return dtuple.isTop();
         } else {
+            if (dtuple.isTop()) {
+                // if we are not top, but dtuple is we are always less then dtuple
+                return true;
+            }
+            
             // Check that all previous tuple values are at least the same or less
             for (int i = 0; i < position; i++) {
                 if (!(dtuple.get(i) <= tuple[i])) {
@@ -142,14 +150,18 @@ public class dTuple {
     }
 
     public boolean gt(dTuple dtuple) {
-        return gt(tupleSize, dtuple);
+        return gt(tupleSize - 1, dtuple);
     }
     
     public boolean gt(int position, dTuple dtuple) {
         if (isTop) {
-            // If we are top, nothing is greater then us
-            return false;
+            // If we are top, we are definitly bigger, except when dtuple is T
+            return !dtuple.isTop();
         } else {
+            if (dtuple.isTop()) {
+                // If we are not top, but dtuple is, we are never greater
+                return false;
+            }
             // Check that all previous tuple values are bigger or more
             for (int i = 0; i < position; i++) {
                 if (!(dtuple.get(i) >= tuple[i])) {
@@ -163,9 +175,14 @@ public class dTuple {
 
     public boolean gte(int position, dTuple dtuple) {
         if (isTop) {
-            // If we are top, only top is equal to us
-            return dtuple.isTop();
+            // If we are top, only everyhint is gt or equal to us
+            return true;
         } else { 
+            if (dtuple.isTop()) {
+                // If we are not top, but dtuple is, we are never greater nor equal
+                return false;
+            }
+            
             // Check that all previous tuple values are bigger or more
             for (int i = 0; i < position; i++) {
                 if (!(dtuple.get(i) >= tuple[i])) {

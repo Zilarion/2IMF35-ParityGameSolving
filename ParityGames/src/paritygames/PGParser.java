@@ -33,7 +33,7 @@ public class PGParser {
     public PGParser() {
         this.scanner = new Scanner(System.in);
         this.initPattern = Pattern.compile("parity ([0-9]+);");
-        this.edgePattern = Pattern.compile("([0-9]+)\\s([0-9]+)\\s([0-9]+)\\s([0-9]+[,0-9]*)(?:\\s\"([0-9a-zA-Z, ()]*)\")*;");
+        this.edgePattern = Pattern.compile("([0-9]+)\\s([0-9]+)\\s([0-9]+)\\s([0-9]+[,0-9]*)(?:\\s\"([\\S\\s]*)\")*;");
     }
 
     public ParityGame readFilePG(File file) throws FileNotFoundException, IOException {
