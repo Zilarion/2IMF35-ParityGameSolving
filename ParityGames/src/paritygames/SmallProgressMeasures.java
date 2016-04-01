@@ -44,7 +44,7 @@ public class SmallProgressMeasures {
             } else {
                 v.setStable();
             }
-            v.setTuple(nRho);
+            v.setTuple(new dTuple(nRho));
         }
     }
 
@@ -101,7 +101,7 @@ public class SmallProgressMeasures {
                 // Minimize everything behind the priority value
                 result.set(i, 0);
             }
-            for (int i = 0; i < vPriority; i++) {
+            for (int i = 0; i <= vPriority; i++) {
                 result.set(i, wRho.get(i));
             }
             result.increment(vPriority);

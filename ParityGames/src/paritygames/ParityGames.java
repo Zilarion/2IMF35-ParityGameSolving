@@ -72,9 +72,9 @@ public class ParityGames {
             System.out.println("Odd: " + results.getValue());
         } else if (!mute) {
             // Print results
-            if (results.getKey().get(0).getID() == 0) {
+            if (results.getKey().size() > 0 && results.getKey().get(0).getID() == 0) {
                 System.out.println("Even won!");
-            } else if (results.getValue().get(0).getID() == 0) {
+            } else if (results.getValue().size() > 0 && results.getValue().get(0).getID() == 0) {
                 System.out.println("Odd won!");
             } else {
                 System.out.println("Hein won!");

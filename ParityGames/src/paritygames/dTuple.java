@@ -13,6 +13,11 @@ public class dTuple {
     public dTuple() throws IllegalTupleException {
         this(new int[tupleSize]);
     }
+    
+    public dTuple(dTuple copy) {
+        this.setTop(copy.isTop());
+        this.tuple = copy.getTuple();
+    }
 
     public dTuple(int[] tuple) throws IllegalTupleException {
         if (tupleSize == -1) {
@@ -22,6 +27,10 @@ public class dTuple {
             throw new IllegalTupleException("Tuple size is equal to tuple size");
         }
         this.tuple = tuple;
+    }
+    
+    public int[] getTuple() {
+        return tuple;
     }
     
     public static void setTupleSize(int size) {
@@ -62,6 +71,7 @@ public class dTuple {
         if (max != null) {
             if (max.get(position) < tuple[position] + 1) {
                 setTop(true);
+                return;
             }
         }
         tuple[position]++;
@@ -123,7 +133,7 @@ public class dTuple {
                 }
             }
             // Check at our final position if < holds
-            return dtuple.get(position) < tuple[position];
+            return dtuple.get(position) > tuple[position];
         }
     }
 
@@ -144,7 +154,7 @@ public class dTuple {
                 }
             }
             // Check at our final position if <= holds
-            return dtuple.get(position) <= tuple[position];
+            return dtuple.get(position) >= tuple[position];
         }
     }
 
@@ -167,8 +177,9 @@ public class dTuple {
                     return false;
                 }
             }
+            
             // Check at our final position if > holds
-            return dtuple.get(position) > tuple[position];
+            return dtuple.get(position) < tuple[position];
         }
     }
 
@@ -189,7 +200,7 @@ public class dTuple {
                 }
             }
             // Check at our final position if >= holds
-            return dtuple.get(position) >= tuple[position];
+            return dtuple.get(position) <= tuple[position];
        }
     }
 
