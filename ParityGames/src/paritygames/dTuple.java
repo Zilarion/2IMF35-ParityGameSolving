@@ -128,12 +128,14 @@ public class dTuple {
             }
             // Check that all previous tuple values are at least the same or less
             for (int i = 0; i < position; i++) {
-                if (!(dtuple.get(i) <= tuple[i])) {
+                if (tuple[i] < dtuple.get(i)) {
+                    return true;
+                } else if (tuple[i] > dtuple.get(i)) {
                     return false;
                 }
             }
             // Check at our final position if < holds
-            return dtuple.get(position) > tuple[position];
+            return tuple[position] < dtuple.get(position);
         }
     }
 
@@ -149,12 +151,14 @@ public class dTuple {
             
             // Check that all previous tuple values are at least the same or less
             for (int i = 0; i < position; i++) {
-                if (!(dtuple.get(i) <= tuple[i])) {
+                if (tuple[i] < dtuple.get(i)) {
+                    return true;
+                } else if (tuple[i] > dtuple.get(i)) {
                     return false;
                 }
             }
             // Check at our final position if <= holds
-            return dtuple.get(position) >= tuple[position];
+            return tuple[position] <= dtuple.get(position);
         }
     }
 
@@ -171,15 +175,16 @@ public class dTuple {
                 // If we are not top, but dtuple is, we are never greater
                 return false;
             }
-            // Check that all previous tuple values are bigger or more
             for (int i = 0; i < position; i++) {
-                if (!(dtuple.get(i) >= tuple[i])) {
+                if (tuple[i] > dtuple.get(i)) {
+                    return true;
+                } else if (tuple[i] < dtuple.get(i)) {
                     return false;
                 }
             }
             
             // Check at our final position if > holds
-            return dtuple.get(position) < tuple[position];
+            return tuple[position] > dtuple.get(position);
         }
     }
 
@@ -195,12 +200,14 @@ public class dTuple {
             
             // Check that all previous tuple values are bigger or more
             for (int i = 0; i < position; i++) {
-                if (!(dtuple.get(i) >= tuple[i])) {
+                if (tuple[i] > dtuple.get(i)) {
+                    return true;
+                } else if (tuple[i] < dtuple.get(i)) {
                     return false;
                 }
             }
             // Check at our final position if >= holds
-            return dtuple.get(position) <= tuple[position];
+            return tuple[position] >= dtuple.get(position);
        }
     }
 

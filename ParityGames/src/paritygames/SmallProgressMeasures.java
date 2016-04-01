@@ -34,16 +34,14 @@ public class SmallProgressMeasures {
                 }
             }
             Vertex v = strategy.next();
-            if (v.stable()) continue;
             
             rho = v.getTuple();
             nRho = lift(v, rho);
             
+//            System.out.println(rho + " lt " + nRho);
             if (rho.lt(nRho)) {
                 isStable = false;
-            } else {
-                v.setStable();
-            }
+            } 
             v.setTuple(new dTuple(nRho));
         }
     }
@@ -61,7 +59,10 @@ public class SmallProgressMeasures {
                 dTuple newTuple = prog(v, w);
 //                System.out.println("Prog (" + v.getTuple() + ", " + v + ", " + w + "): " + newTuple);
                 if (newTuple.lt(min)) {
+//                    System.out.println(newTuple + " < " + min);
                     min = newTuple;
+                } else {
+//                    System.out.println(newTuple +" !> " + min);
                 }
             }
 //            System.out.println("Even minimum: " + min);
@@ -76,7 +77,10 @@ public class SmallProgressMeasures {
                 dTuple newTuple = prog(v, w);
 //                System.out.println("Prog (" + v.getTuple() + ", " + v + ", " + w + "): " + newTuple);
                 if (newTuple.gt(max)) {
+//                    System.out.println(newTuple + " > " + max);
                     max = newTuple;
+                } else {
+//                    System.out.println(newTuple +" !> " + max);
                 }
             }
 //            System.out.println("Odd maximum: " + max);
@@ -88,7 +92,7 @@ public class SmallProgressMeasures {
         dTuple result = new dTuple();
         int vPriority = v.getPriority();
         dTuple wRho = w.getTuple();
-        if (v.getOwner() == Owner.EVEN) {
+        if (vPriority % 2 == 0) { // Even priority
             for (int i = vPriority + 1; i < dTuple.size(); i++) {
                 // Minimize everything behind the priority value
                 result.set(i, 0);
@@ -96,7 +100,7 @@ public class SmallProgressMeasures {
             for (int i = 0; i <= vPriority; i++) {
                 result.set(i, wRho.get(i));
             }
-        } else { // v.getOwner() == Owner.ODD
+        } else { // Odd priority
             for (int i = vPriority + 1; i < dTuple.size(); i++) {
                 // Minimize everything behind the priority value
                 result.set(i, 0);
@@ -105,6 +109,9 @@ public class SmallProgressMeasures {
                 result.set(i, wRho.get(i));
             }
             result.increment(vPriority);
+        }
+        if (wRho.isTop()) {
+            result.setTop(true);
         }
         return result;
     }
