@@ -50,6 +50,15 @@ public class ParityGame {
         return result;
     }
     
+    public boolean isStable() {
+        for (Vertex v : vertices) {
+            if (!v.stable()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public String toDot() {
         String vertices = "";
         String edges = "";

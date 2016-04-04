@@ -12,6 +12,4 @@ public abstract class LiftStrategy {
     }
     
     public abstract Vertex next();
-    
-    public abstract boolean isEnd();
 }

@@ -7,12 +7,10 @@ package paritygames;
 public class LiftStrategyOrdered extends LiftStrategy {
 
     int current;
-    int loops;
     
     public LiftStrategyOrdered(ParityGame pg) {
         super(pg);
         current = 0;
-        loops = 0;
     }
     
     @Override
@@ -21,14 +19,7 @@ public class LiftStrategyOrdered extends LiftStrategy {
         current++;
         if (current > pg.getVertices().size() - 1) {
             current = 0;
-            loops++;
         }
         return v;
     }
-    
-    @Override
-    public boolean isEnd() {
-        return current == pg.getVertices().size() - 1  && loops > 1;
-    }
-
 }

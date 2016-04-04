@@ -23,16 +23,8 @@ public class SmallProgressMeasures {
         }
 
         dTuple nRho, rho;
-        boolean isStable = false;
-        while (true) {
+        while (!pg.isStable()) {
             // Lift the next vertex until stable
-            if (strategy.isEnd()) {
-                if (isStable) {
-                    return results(pg);
-                } else {
-                    isStable = true;
-                }
-            }
             Vertex v = strategy.next();
             
             rho = v.getTuple();
@@ -40,10 +32,13 @@ public class SmallProgressMeasures {
             
 //            System.out.println(rho + " lt " + nRho);
             if (rho.lt(nRho)) {
-                isStable = false;
-            } 
+                v.setStable(false);
+            } else {
+                v.setStable(true);
+            }
             v.setTuple(new dTuple(nRho));
         }
+        return results(pg);
     }
 
     public static dTuple lift(Vertex v, dTuple rho) throws IllegalTupleException {
@@ -66,7 +61,7 @@ public class SmallProgressMeasures {
                 }
             }
 //            System.out.println("Even minimum: " + min);
-            return min;
+            return rho.gt(min) ? rho : min;
         } else { // v.getOwner() == Owner.ODD
 //            System.out.println("Lift: " + v + " / odd");
             // Initialize new d-tuple to (0,...0)
@@ -84,7 +79,7 @@ public class SmallProgressMeasures {
                 }
             }
 //            System.out.println("Odd maximum: " + max);
-            return max;
+            return rho.gt(max) ? rho : max;
         }
     }
 

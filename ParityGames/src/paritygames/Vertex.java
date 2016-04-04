@@ -62,8 +62,8 @@ public class Vertex {
         return tuple;
     }
     
-    public void setStable() {
-        stable = true;
+    public void setStable(boolean value) {
+        stable = value;
     }
     
     public boolean stable() {
