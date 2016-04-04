@@ -1,0 +1,13 @@
+(0, dining_10.invariantly_possibly_eat.gm)(1, dining_2.invariantly_possibly_eat.gm)(2, dining_3.invariantly_possibly_eat.gm)(3, dining_4.invariantly_possibly_eat.gm)(4, dining_5.invariantly_possibly_eat.gm)(5, dining_6.invariantly_possibly_eat.gm)(6, dining_7.invariantly_possibly_eat.gm)(7, dining_8.invariantly_possibly_eat.gm)(8, dining_9.invariantly_possibly_eat.gm)
+--------
+Lift strategy: input
+(0, 8556)(1, 183)(2, 176)(3, 179)(4, 215)(5, 313)(6, 703)(7, 1055)(8, 2810)
+--------
+Lift strategy: random
+(0, 8896)(1, 177)(2, 173)(3, 192)(4, 210)(5, 292)(6, 582)(7, 1139)(8, 2882)
+--------
+Lift strategy: selfloop
+(0, 8829)(1, 167)(2, 165)(3, 195)(4, 213)(5, 281)(6, 557)(7, 1038)(8, 2944)
+--------
+Lift strategy: predecessor
+(0, 3912)(1, 170)(2, 177)(3, 202)(4, 201)(5, 251)(6, 385)(7, 694)(8, 1515)
