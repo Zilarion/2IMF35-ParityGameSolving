@@ -20,6 +20,7 @@ public class Vertex {
     private final String name;
     private dTuple tuple;
     private boolean stable;
+    public static int numStable = 0;
     
     public enum Owner {
         ODD, EVEN
@@ -63,6 +64,13 @@ public class Vertex {
     }
     
     public void setStable(boolean value) {
+        if (stable != value) { 
+            if (value) {
+                numStable++;
+            } else {
+                numStable--;
+            }
+        }
         stable = value;
     }
     

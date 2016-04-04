@@ -30,7 +30,6 @@ public class SmallProgressMeasures {
             rho = v.getTuple();
             nRho = lift(v, rho);
             
-//            System.out.println(rho + " lt " + nRho);
             if (rho.lt(nRho)) {
                 v.setStable(false);
             } else {
@@ -42,9 +41,7 @@ public class SmallProgressMeasures {
     }
 
     public static dTuple lift(Vertex v, dTuple rho) throws IllegalTupleException {
-//        System.out.println("-------");
         if (v.getOwner() == Owner.EVEN) {
-//        System.out.println("Lift: " + v + " / even");
             // Initialize new d-tuple to T
             dTuple min = new dTuple();
             min.setTop(true);
@@ -52,33 +49,22 @@ public class SmallProgressMeasures {
             // Calculate the minimum of all prog(rho, v, w)
             for (Vertex w : v.getSuccessors()) {
                 dTuple newTuple = prog(v, w);
-//                System.out.println("Prog (" + v.getTuple() + ", " + v + ", " + w + "): " + newTuple);
                 if (newTuple.lt(min)) {
-//                    System.out.println(newTuple + " < " + min);
                     min = newTuple;
-                } else {
-//                    System.out.println(newTuple +" !> " + min);
                 }
             }
-//            System.out.println("Even minimum: " + min);
             return rho.gt(min) ? rho : min;
         } else { // v.getOwner() == Owner.ODD
-//            System.out.println("Lift: " + v + " / odd");
             // Initialize new d-tuple to (0,...0)
             dTuple max = new dTuple();
 
             // Calculate the maximum of all prog(rho, v, w)
             for (Vertex w : v.getSuccessors()) {
                 dTuple newTuple = prog(v, w);
-//                System.out.println("Prog (" + v.getTuple() + ", " + v + ", " + w + "): " + newTuple);
                 if (newTuple.gt(max)) {
-//                    System.out.println(newTuple + " > " + max);
                     max = newTuple;
-                } else {
-//                    System.out.println(newTuple +" !> " + max);
                 }
             }
-//            System.out.println("Odd maximum: " + max);
             return rho.gt(max) ? rho : max;
         }
     }
