@@ -25,7 +25,7 @@ public class LiftStrategyPredecessor extends LiftStrategy {
     
     @Override
     public void lifted(Vertex v) {
-        for (Vertex w : v.getSuccessors()) {
+        for (Vertex w : v.getPredecessors()) {
             if (!queued[w.getID()] && !w.getTuple().isTop()) {
                 queue.add(w);
                 queued[w.getID()] = true;

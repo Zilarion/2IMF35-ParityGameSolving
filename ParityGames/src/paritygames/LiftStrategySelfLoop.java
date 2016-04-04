@@ -58,11 +58,10 @@ public class LiftStrategySelfLoop extends LiftStrategy {
         Vertex v = pg.getVertices().get(order[current]);
         if (current < amountOfSelfLoops) {
             if (!v.getTuple().isTop()) {
-                System.out.println("Not top yet! =>" + v.getID());
                 return v;
             } else {
                 current++;
-                System.out.println("Already top, skip! =>" + v.getID());
+                v.setStable(true);
                 return next();
             }
         }

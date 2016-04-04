@@ -8,7 +8,7 @@ public abstract class LiftStrategy {
     protected final ParityGame pg;
     
     LiftStrategy (ParityGame pg) {
-        this. pg = pg;
+        this.pg = pg;
     }
     
     public abstract Vertex next();

@@ -16,7 +16,7 @@ public class Vertex {
     private final int id;
     private final int priority;
     private final Owner owner;
-    private final List<Vertex> successors;
+    private final List<Vertex> successors, predecessors;
     private final String name;
     private dTuple tuple;
     private boolean stable;
@@ -31,8 +31,9 @@ public class Vertex {
         this.priority = priority;
         this.owner = owner;
         this.successors = new ArrayList<>();
+        this.predecessors = new ArrayList<>();
         this.name = n;
-        stable = false;
+        this.stable = false;
     }
     
     public int getID() {
@@ -50,6 +51,14 @@ public class Vertex {
     public List<Vertex> getSuccessors() {
         return successors;
     }
+    
+    public List<Vertex> getPredecessors() {
+        return predecessors;
+    }
+    
+    public void addPredecessor(Vertex v) {
+        this.predecessors.add(v);
+    } 
     
     public void addSuccessor(Vertex v) {
         this.successors.add(v);

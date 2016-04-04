@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -55,8 +56,10 @@ public class PGParser {
                 for (int sucId : succ) {
                     Vertex suc = pg.getVertex(sucId);
                     pg.getVertex(id).addSuccessor(suc);
+                    suc.addPredecessor(pg.getVertex(id));
                 }
             }
+            
         }
         return pg;
     }
