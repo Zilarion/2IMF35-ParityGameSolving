@@ -13,5 +13,5 @@ public abstract class LiftStrategy {
     
     public abstract Vertex next();
     
-    public abstract boolean isEnd();
+    public abstract void lifted(Vertex v);
 }

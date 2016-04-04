@@ -48,7 +48,7 @@ public class ParityGames {
         }
 
         // Check if we have a valid algorithm and file
-        if (fileLoc == null || algorithm == null || (algorithm == "random" || algorithm == "input")) {
+        if (fileLoc == null || algorithm == null || !(algorithm.equals("selfloop") || algorithm.equals("random") || algorithm.equals("input") || algorithm.equals("predecessor"))) {
             printHelp();
             return;
         }
@@ -56,9 +56,9 @@ public class ParityGames {
 
         // Read parity game from file
         ParityGame pg = pgp.readFilePG(file);
-        System.out.println("--------------------");
-        System.out.println(pg.toDot());
-        System.out.println("--------------------");
+//        System.out.println("--------------------");
+//        System.out.println(pg.toDot());
+//        System.out.println("--------------------");
         LiftStrategy strategy = getStrategy(algorithm, pg);
 
         // Calculate
@@ -100,6 +100,10 @@ public class ParityGames {
                 return new LiftStrategyRandomlyOrdered(pg);
             case "input":
                 return new LiftStrategyOrdered(pg);
+            case "selfloop":
+                return new LiftStrategySelfLoop(pg);
+            case "predecessor":
+                return new LiftStrategyPredecessor(pg);
             default:
                 return null;
         }

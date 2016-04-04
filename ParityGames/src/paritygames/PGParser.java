@@ -60,7 +60,7 @@ public class PGParser {
         }
         return pg;
     }
-
+    
     private ParityGame parsePG(ParityGame pg, Matcher m) throws IOException {
         if (m.find()) {
             int id = Integer.parseInt(m.group(1));
