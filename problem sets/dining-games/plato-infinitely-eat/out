@@ -1,0 +1,13 @@
+(0, dining_2.plato_infinitely_often_can_eat.gm)(1, dining_3.plato_infinitely_often_can_eat.gm)(2, dining_4.plato_infinitely_often_can_eat.gm)(3, dining_5.plato_infinitely_often_can_eat.gm)(4, dining_6.plato_infinitely_often_can_eat.gm)(5, dining_7.plato_infinitely_often_can_eat.gm)(6, dining_8.plato_infinitely_often_can_eat.gm)
+--------
+Lift strategy: input
+(0, 181)(1, 175)(2, 179)(3, 236)(4, 785)(5, 4883)(6, 72017)
+--------
+Lift strategy: random
+(0, 213)(1, 205)(2, 178)(3, 245)(4, 630)(5, 5075)(6, 72346)
+--------
+Lift strategy: selfloop
+(0, 242)(1, 164)(2, 182)(3, 240)(4, 808)(5, 4940)(6, 71490)
+--------
+Lift strategy: predecessor
+(0, 169)(1, 167)(2, 171)(3, 190)(4, 247)(5, 305)(6, 548)

@@ -1,0 +1,13 @@
+(0, dining_2.invariantly_plato_starves.gm)(1, dining_3.invariantly_plato_starves.gm)(2, dining_4.invariantly_plato_starves.gm)(3, dining_5.invariantly_plato_starves.gm)(4, dining_6.invariantly_plato_starves.gm)(5, dining_7.invariantly_plato_starves.gm)(6, dining_8.invariantly_plato_starves.gm)
+--------
+Lift strategy: input
+(0, 175)(1, 174)(2, 170)(3, 197)(4, 245)(5, 377)(6, 817)
+--------
+Lift strategy: random
+(0, 163)(1, 175)(2, 171)(3, 208)(4, 251)(5, 427)(6, 836)
+--------
+Lift strategy: selfloop
+(0, 162)(1, 165)(2, 171)(3, 201)(4, 273)(5, 464)(6, 818)
+--------
+Lift strategy: predecessor
+(0, 159)(1, 174)(2, 169)(3, 174)(4, 228)(5, 272)(6, 428)

@@ -1,0 +1,13 @@
+(0, elevator2_2.gm)(1, elevator2_3.gm)(2, elevator2_4.gm)(3, elevator2_5.gm)
+--------
+Lift strategy: input
+(0, 221)(1, 256)(2, 1187)(3, 36604)
+--------
+Lift strategy: random
+(0, 194)(1, 257)(2, 1185)(3, 38825)
+--------
+Lift strategy: selfloop
+(0, 219)(1, 276)(2, 1312)(3, 39133)
+--------
+Lift strategy: predecessor
+(0, 191)(1, 235)(2, 747)(3, 17755)
