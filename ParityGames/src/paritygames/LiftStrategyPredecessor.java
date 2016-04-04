@@ -23,7 +23,8 @@ public class LiftStrategyPredecessor extends LiftStrategy {
         }
     }
     
-    private void lifted(Vertex v) {
+    @Override
+    public void lifted(Vertex v) {
         for (Vertex w : v.getSuccessors()) {
             if (!queued[w.getID()] && !w.getTuple().isTop()) {
                 queue.add(w);
@@ -39,7 +40,6 @@ public class LiftStrategyPredecessor extends LiftStrategy {
         } else {
             Vertex v = queue.poll();
             queued[v.getID()] = false;
-            lifted(v);
             return v;
         }
     }

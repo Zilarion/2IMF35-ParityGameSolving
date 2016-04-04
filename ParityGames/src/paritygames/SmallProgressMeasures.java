@@ -23,18 +23,27 @@ public class SmallProgressMeasures {
         }
 
         dTuple nRho, rho;
+        // Check if rho [= Lift(u, v) holds for all v in vertices
         while (!pg.isStable()) {
             // Lift the next vertex until stable
             Vertex v = strategy.next();
             
+            if (v == null) {
+                break;
+            }
+            // nRho = lift(v, rho)
             rho = v.getTuple();
             nRho = lift(v, rho);
             
+            // Update stableness of vertex based on if u [= Lift(v, rho) holds
             if (rho.lt(nRho)) {
                 v.setStable(false);
+                strategy.lifted(v);
             } else {
                 v.setStable(true);
             }
+            
+            // rho = nRho
             v.setTuple(new dTuple(nRho));
         }
         return results(pg);
@@ -73,6 +82,7 @@ public class SmallProgressMeasures {
         dTuple result = new dTuple();
         int vPriority = v.getPriority();
         dTuple wRho = w.getTuple();
+        
         if (vPriority % 2 == 0) { // Even priority
             for (int i = vPriority + 1; i < dTuple.size(); i++) {
                 // Minimize everything behind the priority value

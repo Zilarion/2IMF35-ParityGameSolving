@@ -40,4 +40,8 @@ public class LiftStrategyRandomlyOrdered extends LiftStrategy {
         }
         return v;
     }
+    
+    @Override
+    public void lifted(Vertex v) {
+    }
 }

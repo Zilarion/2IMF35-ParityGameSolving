@@ -37,7 +37,7 @@ public class LiftStrategySelfLoop extends LiftStrategy {
             // Check for selfloop
             boolean hasLoop = false;
             for (Vertex suc : v.getSuccessors()) {
-                if (v.getID() == suc.getID()) {
+                if (v.getID() == suc.getID() && v.getOwner() == Owner.ODD && v.getPriority() % 2 == 1) {
                     hasLoop = true;
                 }
             }
@@ -58,9 +58,11 @@ public class LiftStrategySelfLoop extends LiftStrategy {
         Vertex v = pg.getVertices().get(order[current]);
         if (current < amountOfSelfLoops) {
             if (!v.getTuple().isTop()) {
+                System.out.println("Not top yet! =>" + v.getID());
                 return v;
             } else {
                 current++;
+                System.out.println("Already top, skip! =>" + v.getID());
                 return next();
             }
         }
@@ -69,5 +71,9 @@ public class LiftStrategySelfLoop extends LiftStrategy {
             current = 0;
         }
         return v;
+    }
+    
+    @Override
+    public void lifted(Vertex v) {
     }
 }

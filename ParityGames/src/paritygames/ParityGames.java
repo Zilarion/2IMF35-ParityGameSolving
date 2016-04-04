@@ -102,6 +102,8 @@ public class ParityGames {
                 return new LiftStrategyOrdered(pg);
             case "selfloop":
                 return new LiftStrategySelfLoop(pg);
+            case "predecessor":
+                return new LiftStrategyPredecessor(pg);
             default:
                 return null;
         }
