@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Process args
+args=""
+timing=false
+for var in "$@"; do	
+	if [ $var = "-d" ]; then
+    	args="-d"
+    fi
+    if [ $var = "-t" ]; then
+		timing=true
+		args="-m"
+    fi
+done
+
+# print file with index
+index=0
+for pg in *.gm; do
+	printf "($index, $pg)"
+	index=$((index + 1))
+done
+echo ""
+
+# print and execute parity game checker
+for lift in "input" "random" "selfloop" "predecessor"; do
+	index=0
+	echo "--------"
+	echo "Lift strategy: $lift"
+	for pg in *.gm; do
+		if ! $timing; then
+    		echo "Problem set: $pg"
+		fi
+		start=$(gdate +%s%N)
+		java -jar ParityGames.jar -f $pg -l $lift $args
+    	duration=$(($(($(gdate +%s%N) - start))/1000000))
+		if ! $timing; then
+    		echo "Run time: $duration ms"
+    	else
+			printf "($index, $duration)"
+    	fi
+		index=$((index + 1))
+	done
+	echo "";
+done
