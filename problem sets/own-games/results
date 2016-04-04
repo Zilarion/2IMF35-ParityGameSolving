@@ -1,0 +1,85 @@
+(0, game1.gm)(1, game2.gm)(2, game3.gm)(3, game4.gm)(4, game5.gm)(5, game6.gm)
+--------
+Lift strategy: input
+Problem set: game1.gm
+Odd won!
+Run time: 164 ms
+Problem set: game2.gm
+Odd won!
+Run time: 156 ms
+Problem set: game3.gm
+Odd won!
+Run time: 157 ms
+Problem set: game4.gm
+Odd won!
+Run time: 158 ms
+Problem set: game5.gm
+Even won!
+Run time: 158 ms
+Problem set: game6.gm
+Odd won!
+Run time: 162 ms
+
+--------
+Lift strategy: random
+Problem set: game1.gm
+Odd won!
+Run time: 157 ms
+Problem set: game2.gm
+Odd won!
+Run time: 156 ms
+Problem set: game3.gm
+Odd won!
+Run time: 157 ms
+Problem set: game4.gm
+Odd won!
+Run time: 162 ms
+Problem set: game5.gm
+Even won!
+Run time: 157 ms
+Problem set: game6.gm
+Odd won!
+Run time: 159 ms
+
+--------
+Lift strategy: selfloop
+Problem set: game1.gm
+Odd won!
+Run time: 158 ms
+Problem set: game2.gm
+Odd won!
+Run time: 157 ms
+Problem set: game3.gm
+Odd won!
+Run time: 155 ms
+Problem set: game4.gm
+Odd won!
+Run time: 162 ms
+Problem set: game5.gm
+Even won!
+Run time: 161 ms
+Problem set: game6.gm
+Odd won!
+Run time: 159 ms
+
+--------
+Lift strategy: predecessor
+Problem set: game1.gm
+Odd won!
+Run time: 156 ms
+Problem set: game2.gm
+Odd won!
+Run time: 157 ms
+Problem set: game3.gm
+Odd won!
+Run time: 156 ms
+Problem set: game4.gm
+Odd won!
+Run time: 158 ms
+Problem set: game5.gm
+Even won!
+Run time: 158 ms
+Problem set: game6.gm
+Odd won!
+Run time: 159 ms
+
