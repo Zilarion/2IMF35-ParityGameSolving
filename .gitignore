@@ -12,4 +12,5 @@
 hs_err_pid*
 /ParityGames/dist/
 *.gm
+!*/own-games/*.gm
 *.DS_Store
